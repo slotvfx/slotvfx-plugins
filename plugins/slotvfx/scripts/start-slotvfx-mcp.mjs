@@ -22,12 +22,12 @@ const candidates = [
 const server = candidates.find(p => existsSync(p));
 if (!server) {
   process.stderr.write(
-    'SlotVFX Desktop was not found. Install SlotVFX (https://slotvfx.com) or set ' +
+    'SlotVFX Desktop was not found. Install SlotVFX Desktop or set ' +
     'SLOTVFX_MCP_SERVER to its slotfxMcpServer.mjs. Looked in:\n  ' + candidates.join('\n  ') + '\n');
   process.exit(1);
 }
 
-const child = spawn(process.execPath, [server, ...process.argv.slice(2)], { stdio: 'inherit', env });
+const child = spawn(process.execPath, [server, ...process.argv.slice(2)], { stdio: 'inherit' });
 for (const sig of ['SIGINT', 'SIGTERM', 'SIGHUP']) process.on(sig, () => child.kill(sig));
 child.on('exit', (code, signal) => process.exit(signal ? 1 : code ?? 0));
 child.on('error', err => { process.stderr.write(`SlotVFX MCP could not start: ${err.message}\n`); process.exit(1); });
