@@ -1,14 +1,25 @@
 {
   "name": "slotvfx",
-  "owner": { "name": "SlotVFX (Gamix Labs)", "url": "https://slotvfx.com" },
-  "metadata": { "description": "Official SlotVFX plugins for Claude: create and ship slot game VFX in SlotVFX Desktop." },
+  "owner": {
+    "name": "SlotVFX (Gamix Labs)",
+    "url": "https://slotvfx.com"
+  },
+  "metadata": {
+    "description": "SlotVFX plugins for Claude Code: create, animate, test and export slot game VFX in SlotVFX Desktop."
+  },
   "plugins": [
     {
       "name": "slotvfx",
       "source": "./plugins/slotvfx",
-      "description": "The 20 SlotVFX skills plus the SlotVFX Desktop MCP connection: particles, win celebrations, logo reveals, Spine VFX, motion, state machines, verification and dev handoff.",
+      "description": "Claude Code plugin for SlotVFX: 20 skills plus the SlotVFX Desktop MCP connection, so Claude can create, animate, test and export slot game VFX (win celebrations, transitions, particles, Spine) right in the editor.",
       "category": "design",
-      "tags": ["vfx", "game-dev", "animation"]
+      "tags": [
+        "vfx",
+        "game-dev",
+        "slot-games",
+        "animation",
+        "mcp"
+      ]
     }
   ]
 }
