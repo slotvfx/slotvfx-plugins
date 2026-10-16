@@ -1,0 +1,10 @@
+{
+  "name": "slotvfx",
+  "version": "0.7.0",
+  "description": "Create, animate, verify and deliver slot game effects in SlotVFX Desktop: the 20 SlotVFX skills plus a connection to the app's local MCP server.",
+  "author": { "name": "Gamix Labs Private Limited", "url": "https://slotvfx.com" },
+  "homepage": "https://slotvfx.com",
+  "repository": "https://github.com/slotvfx/slotvfx-skills",
+  "license": "MIT",
+  "keywords": ["slotvfx", "vfx", "slot", "particles", "motion", "animation", "spine", "pixi", "mcp"]
+}
