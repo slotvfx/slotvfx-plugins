@@ -13,6 +13,12 @@ Let Claude build slot game VFX for you in **[SlotVFX](https://slotvfx.com)**. Th
 
 Website: [slotvfx.com](https://slotvfx.com) · Docs: [slotvfx.com/docs](https://slotvfx.com/docs/) · Skills source: [slotvfx/slotvfx-skills](https://github.com/slotvfx/slotvfx-skills)
 
+## What this plugin runs and connects to
+- **One local process:** `scripts/start-slotvfx-mcp.mjs` (readable source, about 30 lines) finds SlotVFX Desktop in its standard install folder and starts the MCP server that ships inside the app (`SlotVFX.app/Contents/Resources/mcp/adapter/server/slotfxMcpServer.mjs` on macOS) with Node. Nothing is downloaded or installed.
+- **One local connection:** that server talks only to the SlotVFX Desktop app on the same computer, through the app's localhost, token-protected AI bridge. The plugin sends no data to any other server and reads no credentials.
+- **Skills are text:** the 20 skills are Markdown guides plus small standard-library Python helpers (for example `motion_keys.py`) that Claude may run locally when a skill says so.
+- Edits Claude makes in SlotVFX go through the app's own tools, are undoable, and are recorded in the SlotVFX AI audit log.
+
 ## Requirements
 - SlotVFX Desktop 0.9.64 or newer, running, with **Help → AI / MCP Bridge** turned on. The plugin starts the MCP server that ships inside the app, so the tools always match your app version.
 - Node.js 22 or newer on your PATH (`node -v`).
