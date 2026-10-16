@@ -34,7 +34,7 @@ From the terminal: `claude plugin marketplace add slotvfx/slotvfx-plugins` then 
 `/plugin marketplace update slotvfx`, or turn on auto-update for this marketplace in `/plugin` → Marketplaces.
 
 ## If SlotVFX isn't found
-The plugin looks for the app in `/Applications` and `~/Applications` on macOS, and in the default install folders on Windows. If you installed SlotVFX somewhere else, set `SLOTVFX_MCP_SERVER` to the full path of `slotfxMcpServer.mjs` inside the app (on macOS: `SlotVFX.app/Contents/Resources/mcp/adapter/server/`).
+The plugin looks for the app in `/Applications` and `~/Applications` on macOS, and in the default install folders on Windows. If you installed SlotVFX somewhere else, move it to one of those standard locations, or add the app's server to Claude Code yourself with `claude mcp add` (on macOS it is `SlotVFX.app/Contents/Resources/mcp/adapter/server/slotfxMcpServer.mjs`, run with `node`).
 
 If you already use the SlotVFX desktop extension in the Claude desktop app, you don't need it in Claude Code; avoid running both in the same client, or you'll see every tool twice.
 

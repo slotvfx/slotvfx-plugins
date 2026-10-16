@@ -1,29 +1,26 @@
 #!/usr/bin/env node
 // Starts the MCP server that ships inside SlotVFX Desktop, so this plugin
 // carries no copy of it and always matches the installed app version.
-// Override the location with SLOTVFX_MCP_SERVER=/path/to/slotfxMcpServer.mjs.
 import { existsSync } from 'node:fs';
 import { homedir } from 'node:os';
 import { join } from 'node:path';
 import { spawn } from 'node:child_process';
 
 const rel = ['mcp', 'adapter', 'server', 'slotfxMcpServer.mjs'];
-const env = process.env;
 const candidates = [
-  env.SLOTVFX_MCP_SERVER,
   // macOS
   join('/Applications', 'SlotVFX.app', 'Contents', 'Resources', ...rel),
   join(homedir(), 'Applications', 'SlotVFX.app', 'Contents', 'Resources', ...rel),
-  // Windows (default Electron install locations; not yet tested)
-  env.LOCALAPPDATA && join(env.LOCALAPPDATA, 'Programs', 'SlotVFX', 'resources', ...rel),
-  env.ProgramFiles && join(env.ProgramFiles, 'SlotVFX', 'resources', ...rel),
-].filter(Boolean);
+  // Windows (default install locations; not yet tested)
+  join(homedir(), 'AppData', 'Local', 'Programs', 'SlotVFX', 'resources', ...rel),
+  join('C:\\Program Files', 'SlotVFX', 'resources', ...rel),
+];
 
 const server = candidates.find(p => existsSync(p));
 if (!server) {
   process.stderr.write(
-    'SlotVFX Desktop was not found. Install SlotVFX Desktop or set ' +
-    'SLOTVFX_MCP_SERVER to its slotfxMcpServer.mjs. Looked in:\n  ' + candidates.join('\n  ') + '\n');
+    'SlotVFX Desktop was not found. Install SlotVFX Desktop in its standard location ' +
+    'and turn on Help → AI / MCP Bridge. Looked in:\n  ' + candidates.join('\n  ') + '\n');
   process.exit(1);
 }
 
