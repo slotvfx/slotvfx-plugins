@@ -1,0 +1,22 @@
+{
+  "name": "slotvfx",
+  "owner": {
+    "name": "SlotVFX (Gamix Labs)",
+    "url": "https://slotvfx.com"
+  },
+  "metadata": {
+    "description": "SlotVFX plugins for Claude Code, installed without Git: create, animate, test and export slot game VFX in SlotVFX Desktop."
+  },
+  "plugins": [
+    {
+      "name": "slotvfx",
+      "source": {
+        "source": "archive",
+        "url": "https://raw.githubusercontent.com/slotvfx/slotvfx-plugins/main/dist/slotvfx-plugin-0.8.0.zip",
+        "sha256": "cbfb9e067229e27f16c5459ea93d502f58dbb75705c421a0b6e5b26e189b4974"
+      },
+      "description": "Claude Code plugin for SlotVFX: 20 skills plus the SlotVFX Desktop MCP connection, so Claude can create, animate, test and export slot game VFX (win celebrations, transitions, particles, Spine) right in the editor.",
+      "category": "design"
+    }
+  ]
+}
