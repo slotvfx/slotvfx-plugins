@@ -6,8 +6,17 @@ set "APP="
 for %%P in ("%LOCALAPPDATA%\Programs\SlotVFX" "%ProgramFiles%\SlotVFX" "%ProgramFiles(x86)%\SlotVFX") do (
   if not defined APP if exist "%%~P\SlotVFX.exe" set "APP=%%~P"
 )
+rem Installed somewhere else, or unzipped: ask the running app or the installer's registry entry.
+rem Set SLOTVFX_APP to the SlotVFX folder to choose one yourself.
+if defined SLOTVFX_APP if exist "%SLOTVFX_APP%\SlotVFX.exe" set "APP=%SLOTVFX_APP%"
+set "FOUND=%TEMP%\slotvfx-app-folder-%RANDOM%.txt"
 if not defined APP (
-  powershell -NoProfile -ExecutionPolicy Bypass -File "%~dp0setup-help.ps1" "SlotVFX Desktop is not installed. Download it from https://slotvfx.com, install it, open it and turn on Connect AI, then restart Claude Code."
+  powershell -NoProfile -ExecutionPolicy Bypass -File "%~dp0find-slotvfx.ps1" < NUL > "%FOUND%" 2> NUL
+  set /p APP=< "%FOUND%"
+  del "%FOUND%" 2> NUL
+)
+if not defined APP (
+  powershell -NoProfile -ExecutionPolicy Bypass -File "%~dp0setup-help.ps1" "SlotVFX Desktop was not found. If it is not installed, download it from https://slotvfx.com. If it is installed in another folder, open SlotVFX first or set SLOTVFX_APP to that folder. Turn on Connect AI, then restart Claude Code."
   exit /b 0
 )
 set "SERVER=%APP%\resources\mcp\adapter\server\slotfxMcpServer.mjs"
