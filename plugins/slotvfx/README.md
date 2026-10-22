@@ -7,7 +7,7 @@ Let Claude build slot game VFX for you in **[SlotVFX](https://slotvfx.com)**. Th
 /plugin install slotvfx@slotvfx
 ```
 
-No Git or Node.js needed on macOS. Already have Git? `/plugin marketplace add slotvfx/slotvfx-plugins` works too.
+No Git or Node.js needed. **On Windows**, install `slotvfx-windows@slotvfx` instead of `slotvfx@slotvfx`. Already have Git? `/plugin marketplace add slotvfx/slotvfx-plugins` works too.
 
 **What you get**
 - **The SlotVFX MCP connection:** Claude works on the project open in SlotVFX Desktop (137 editor tools) through the app's local, token-protected AI bridge.
@@ -23,8 +23,8 @@ Website: [slotvfx.com](https://slotvfx.com) · Docs: [slotvfx.com/docs](https://
 
 ## Requirements
 - SlotVFX Desktop 0.9.64 or newer, running, with **Help → AI / MCP Bridge** turned on. The plugin starts the MCP server that ships inside the app, so the tools always match your app version.
-- macOS: nothing else. The plugin uses the Node.js built into SlotVFX Desktop.
-- Other systems: Node.js 22 or newer on your PATH (`node -v`).
+- Nothing else on macOS or Windows: the plugin uses the Node.js built into SlotVFX Desktop (on Windows, use the `slotvfx-windows` plugin).
+- Linux: Node.js 22 or newer on your PATH (`node -v`).
 - Git only if you add the marketplace as `slotvfx/slotvfx-plugins`. The HTTPS link above needs no Git (Claude Code 2.1.224 or newer).
 - Tested on macOS. Windows is not tested yet; reports are welcome at https://slotvfx.com.
 - Claude Code (terminal, IDE or the Claude desktop app's Code tab). The MCP runs on your own computer, so it does **not** work in claude.ai chat in the browser.
@@ -38,6 +38,8 @@ From the terminal: `claude plugin marketplace add https://raw.githubusercontent.
 `/plugin marketplace update slotvfx`, or turn on auto-update for this marketplace in `/plugin` → Marketplaces.
 
 ## If SlotVFX isn't found
+If SlotVFX Desktop is missing or too old, the plugin still connects and Claude tells you what to install or update.
+
 The plugin looks for the app in `/Applications` and `~/Applications` on macOS, and in the default install folders on Windows. If you installed SlotVFX somewhere else, move it to one of those standard locations, or add the app's server to Claude Code yourself with `claude mcp add` (on macOS it is `SlotVFX.app/Contents/Resources/mcp/adapter/server/slotfxMcpServer.mjs`, run with `node`).
 
 If you already use the SlotVFX desktop extension in the Claude desktop app, you don't need it in Claude Code; avoid running both in the same client, or you'll see every tool twice.

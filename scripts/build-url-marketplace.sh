@@ -1,16 +1,25 @@
 #!/bin/sh
-# Builds dist/: a zip of the plugin and a marketplace.json that points at it,
-# so Claude Code can install the plugin over HTTPS without Git.
-# Run after changing the plugin, then commit dist/ together with the change.
+# Builds dist/: a zip of each plugin and a marketplace.json that points at them,
+# so Claude Code can install the plugins over HTTPS without Git.
+# Run scripts/sync-windows-plugin.sh first, then this, and commit dist/ with the change.
 set -eu
 root=$(CDPATH= cd -- "$(dirname -- "$0")/.." && pwd)
 base="https://raw.githubusercontent.com/slotvfx/slotvfx-plugins/main/dist"
-version=$(sed -n 's/^ *"version": *"\([^"]*\)".*/\1/p' "$root/plugins/slotvfx/.claude-plugin/plugin.json" | head -n 1)
-zipname="slotvfx-plugin-$version.zip"
 mkdir -p "$root/dist"
-rm -f "$root"/dist/slotvfx-plugin-*.zip
-(cd "$root/plugins/slotvfx" && zip -qrX "$root/dist/$zipname" . -x '*.DS_Store')
-sha=$(shasum -a 256 "$root/dist/$zipname" | cut -d ' ' -f 1)
+rm -f "$root"/dist/*.zip
+entries=""
+for name in slotvfx slotvfx-windows; do
+  dir="$root/plugins/$name"
+  version=$(sed -n 's/^ *"version": *"\([^"]*\)".*/\1/p' "$dir/.claude-plugin/plugin.json" | head -n 1)
+  description=$(sed -n 's/^ *"description": *"\([^"]*\)".*/\1/p' "$dir/.claude-plugin/plugin.json" | head -n 1)
+  zipname="$name-plugin-$version.zip"
+  (cd "$dir" && zip -qrX "$root/dist/$zipname" . -x '*.DS_Store')
+  sha=$(shasum -a 256 "$root/dist/$zipname" | cut -d ' ' -f 1)
+  entry=$(printf '    {\n      "name": "%s",\n      "source": {\n        "source": "archive",\n        "url": "%s/%s",\n        "sha256": "%s"\n      },\n      "description": "%s",\n      "category": "design"\n    }' "$name" "$base" "$zipname" "$sha" "$description")
+  entries="${entries:+$entries,
+}$entry"
+  echo "Built dist/$zipname ($sha)"
+done
 cat > "$root/dist/marketplace.json" <<JSON
 {
   "name": "slotvfx",
@@ -22,17 +31,7 @@ cat > "$root/dist/marketplace.json" <<JSON
     "description": "SlotVFX plugins for Claude Code, installed without Git: create, animate, test and export slot game VFX in SlotVFX Desktop."
   },
   "plugins": [
-    {
-      "name": "slotvfx",
-      "source": {
-        "source": "archive",
-        "url": "$base/$zipname",
-        "sha256": "$sha"
-      },
-      "description": "Claude Code plugin for SlotVFX: 20 skills plus the SlotVFX Desktop MCP connection, so Claude can create, animate, test and export slot game VFX (win celebrations, transitions, particles, Spine) right in the editor.",
-      "category": "design"
-    }
+$entries
   ]
 }
 JSON
-echo "Built dist/$zipname ($sha)"

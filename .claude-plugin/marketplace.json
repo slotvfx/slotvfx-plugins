@@ -11,7 +11,20 @@
     {
       "name": "slotvfx",
       "source": "./plugins/slotvfx",
-      "description": "Claude Code plugin for SlotVFX: 20 skills plus the SlotVFX Desktop MCP connection, so Claude can create, animate, test and export slot game VFX (win celebrations, transitions, particles, Spine) right in the editor.",
+      "description": "Claude Code plugin for SlotVFX on macOS: 20 skills plus the SlotVFX Desktop MCP connection, so Claude can create, animate, test and export slot game VFX (win celebrations, transitions, particles, Spine) right in the editor.",
+      "category": "design",
+      "tags": [
+        "vfx",
+        "game-dev",
+        "slot-games",
+        "animation",
+        "mcp"
+      ]
+    },
+    {
+      "name": "slotvfx-windows",
+      "source": "./plugins/slotvfx-windows",
+      "description": "Windows version of the SlotVFX plugin for Claude Code: 20 skills plus the SlotVFX Desktop MCP connection, using the Node.js built into SlotVFX.",
       "category": "design",
       "tags": [
         "vfx",
