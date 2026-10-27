@@ -1,6 +1,6 @@
 {
   "name": "slotvfx-windows",
-  "version": "0.9.1",
+  "version": "0.9.2",
   "description": "Windows version of the SlotVFX plugin for Claude Code: 20 skills plus the SlotVFX Desktop MCP connection, using the Node.js built into SlotVFX.",
   "author": {
     "name": "Gamix Labs Private Limited",
@@ -23,9 +23,5 @@
     "spine",
     "igaming",
     "gamedev"
-  ],
-  "documentationUrl": "https://slotvfx.com/docs/",
-  "supportUrl": "https://slotvfx.com/support",
-  "privacyPolicyUrl": "https://slotvfx.com/privacy-policy",
-  "termsOfServiceUrl": "https://slotvfx.com/terms-of-service"
+  ]
 }

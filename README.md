@@ -7,7 +7,7 @@ Let Claude build slot game VFX for you in **[SlotVFX](https://slotvfx.com)**. Th
 /plugin install slotvfx@slotvfx
 ```
 
-No Git or Node.js needed. **On Windows**, install `slotvfx-windows@slotvfx` instead of `slotvfx@slotvfx`. Already have Git? `/plugin marketplace add slotvfx/slotvfx-plugins` works too.
+No Git needed. **On Windows**, install `slotvfx-windows@slotvfx` instead of `slotvfx@slotvfx`. Already have Git? `/plugin marketplace add slotvfx/slotvfx-plugins` works too.
 
 **What you get**
 - **The SlotVFX MCP connection:** Claude works on the project open in SlotVFX Desktop (137 editor tools) through the app's local, token-protected AI bridge.
@@ -16,15 +16,14 @@ No Git or Node.js needed. **On Windows**, install `slotvfx-windows@slotvfx` inst
 Website: [slotvfx.com](https://slotvfx.com) · Docs: [slotvfx.com/docs](https://slotvfx.com/docs/) · Skills source: [slotvfx/slotvfx-skills](https://github.com/slotvfx/slotvfx-skills)
 
 ## What this plugin runs and connects to
-- **One local process:** `scripts/start-slotvfx-mcp.sh` (readable source, about 20 lines) finds SlotVFX Desktop in its standard install folder and starts the MCP server that ships inside the app (`SlotVFX.app/Contents/Resources/mcp/adapter/server/slotfxMcpServer.mjs` on macOS) with the Node.js built into SlotVFX. Elsewhere it falls back to `scripts/start-slotvfx-mcp.mjs` with your Node.js. Nothing is downloaded or installed.
+- **One local process:** `node scripts/start-slotvfx-mcp.js` (readable source, about 90 lines, Node.js standard library only) finds SlotVFX Desktop and starts the MCP server that ships inside the app (`SlotVFX.app/Contents/Resources/mcp/adapter/server/slotfxMcpServer.mjs`) with the Node.js built into SlotVFX. Nothing is downloaded or installed.
 - **One local connection:** that server talks only to the SlotVFX Desktop app on the same computer, through the app's localhost, token-protected AI bridge. The plugin sends no data to any other server and reads no credentials.
 - **Skills are text:** the 20 skills are Markdown guides plus small standard-library Python helpers (for example `motion_keys.py`) that Claude may run locally when a skill says so.
 - Edits Claude makes in SlotVFX go through the app's own tools, are undoable, and are recorded in the SlotVFX AI audit log.
 
 ## Requirements
 - SlotVFX Desktop 0.9.64 or newer, running, with **Help → AI / MCP Bridge** turned on. The plugin starts the MCP server that ships inside the app, so the tools always match your app version.
-- Nothing else on macOS or Windows: the plugin uses the Node.js built into SlotVFX Desktop (on Windows, use the `slotvfx-windows` plugin).
-- Linux: Node.js 22 or newer on your PATH (`node -v`).
+- macOS: any `node` on your PATH, even an old version, to run the small starter; the MCP server itself runs on the Node.js built into SlotVFX Desktop. On Windows, use the `slotvfx-windows` plugin, which needs no Node.js.
 - Git only if you add the marketplace as `slotvfx/slotvfx-plugins`. The HTTPS link above needs no Git (Claude Code 2.1.224 or newer).
 - Tested on macOS. Windows is not tested yet; reports are welcome at https://slotvfx.com.
 - Claude Code (terminal, IDE or the Claude desktop app's Code tab). The MCP runs on your own computer, so it does **not** work in claude.ai chat in the browser.

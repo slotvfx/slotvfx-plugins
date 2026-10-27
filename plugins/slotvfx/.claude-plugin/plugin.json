@@ -1,6 +1,6 @@
 {
   "name": "slotvfx",
-  "version": "0.9.1",
+  "version": "0.9.2",
   "description": "Claude Code plugin for SlotVFX: 20 skills plus the SlotVFX Desktop MCP connection, so Claude can create, animate, test and export slot game VFX (win celebrations, transitions, particles, Spine) right in the editor.",
   "author": {
     "name": "Gamix Labs Private Limited",
@@ -23,9 +23,5 @@
     "spine",
     "igaming",
     "gamedev"
-  ],
-  "documentationUrl": "https://slotvfx.com/docs/",
-  "supportUrl": "https://slotvfx.com/support",
-  "privacyPolicyUrl": "https://slotvfx.com/privacy-policy",
-  "termsOfServiceUrl": "https://slotvfx.com/terms-of-service"
+  ]
 }
