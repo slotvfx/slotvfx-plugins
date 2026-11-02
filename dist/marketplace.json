@@ -12,18 +12,18 @@
       "name": "slotvfx",
       "source": {
         "source": "archive",
-        "url": "https://raw.githubusercontent.com/slotvfx/slotvfx-plugins/main/dist/slotvfx-plugin-0.9.5.zip",
-        "sha256": "85500d40d9d7addcffa0e43d479ac70c645d36b272a1164689507868fd4691be"
+        "url": "https://raw.githubusercontent.com/slotvfx/slotvfx-plugins/main/dist/slotvfx-plugin-0.9.6.zip",
+        "sha256": "cf6e86786f6329898b72ba2a826f22031b152604c77c639f1e199914b7df5a0f"
       },
-      "description": "Claude Code plugin for SlotVFX: 20 skills plus the SlotVFX Desktop MCP connection, so Claude can create, animate, test and export slot game VFX (win celebrations, transitions, particles, Spine) right in the editor. Needs SlotVFX Desktop and Node.js (any version).",
+      "description": "Claude Code plugin for SlotVFX: 20 skills plus the SlotVFX Desktop MCP connection, so Claude can create, animate, test and export animation and VFX for 2D games (win moments, transitions, particles, Spine) right in the editor. Needs SlotVFX Desktop and Node.js (any version).",
       "category": "design"
     },
     {
       "name": "slotvfx-windows",
       "source": {
         "source": "archive",
-        "url": "https://raw.githubusercontent.com/slotvfx/slotvfx-plugins/main/dist/slotvfx-windows-plugin-0.9.5.zip",
-        "sha256": "ae8aa3ecf89d2354901cd474d1d7338e86e5003f7d67892757d7c9d92253a9d6"
+        "url": "https://raw.githubusercontent.com/slotvfx/slotvfx-plugins/main/dist/slotvfx-windows-plugin-0.9.6.zip",
+        "sha256": "c77bbf9fc511b78fe38685cdb5e31e162fb0419fc83599fc7bac6f6250755794"
       },
       "description": "Windows version of the SlotVFX plugin for Claude Code: 20 skills plus the SlotVFX Desktop MCP connection, using the Node.js built into SlotVFX.",
       "category": "design"

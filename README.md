@@ -1,6 +1,6 @@
 # SlotVFX plugin for Claude Code
 
-Let Claude build slot game VFX for you in **[SlotVFX](https://slotvfx.com)**. This plugin connects Claude Code to SlotVFX Desktop through its built-in MCP server and adds 20 expert skills. Claude can then create, animate, test and export win celebrations, transitions, particles, logo reveals and Spine VFX right in the editor, ready for game developers to integrate.
+Let Claude build animation and VFX for your 2D game in **[SlotVFX](https://slotvfx.com)**. This plugin connects Claude Code to SlotVFX Desktop through its built-in MCP server and adds 20 expert skills. Claude can then create, animate, test and export win celebrations, transitions, particles, logo reveals and Spine VFX right in the editor, ready for game developers to integrate.
 
 ```
 /plugin marketplace add https://raw.githubusercontent.com/slotvfx/slotvfx-plugins/main/dist/marketplace.json
