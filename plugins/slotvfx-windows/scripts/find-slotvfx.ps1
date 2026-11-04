@@ -1,7 +1,6 @@
 # Prints the folder that holds SlotVFX.exe, for SlotVFX installed anywhere:
-# the SLOTVFX_APP override, the running app, then the installer's registry entry.
+# the running app, then the installer's registry entry.
 $candidates = @()
-if ($env:SLOTVFX_APP) { $candidates += $env:SLOTVFX_APP }
 $running = Get-Process -Name SlotVFX -ErrorAction SilentlyContinue | Where-Object { $_.Path } | Select-Object -First 1
 if ($running) { $candidates += (Split-Path -Parent $running.Path) }
 $uninstallKeys = @(

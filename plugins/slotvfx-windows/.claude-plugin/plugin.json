@@ -1,6 +1,6 @@
 {
   "name": "slotvfx-windows",
-  "version": "0.9.6",
+  "version": "0.9.7",
   "description": "Windows version of the SlotVFX plugin for Claude Code: 20 skills plus the SlotVFX Desktop MCP connection, using the Node.js built into SlotVFX.",
   "author": {
     "name": "Gamix Labs Private Limited",
@@ -23,5 +23,13 @@
     "spine",
     "igaming",
     "gamedev"
-  ]
+  ],
+  "userConfig": {
+    "slotvfx_app": {
+      "type": "directory",
+      "title": "SlotVFX app location (optional)",
+      "description": "Only needed if SlotVFX is not in its usual install folder and you don't keep it open: the folder that holds SlotVFX.exe. Leave empty to find it automatically.",
+      "default": ""
+    }
+  }
 }

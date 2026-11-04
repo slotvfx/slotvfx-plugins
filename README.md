@@ -39,7 +39,7 @@ From the terminal: `claude plugin marketplace add https://raw.githubusercontent.
 ## If SlotVFX isn't found
 If SlotVFX Desktop is missing or too old, the plugin still connects and Claude tells you what to install or update.
 
-SlotVFX in another folder is found while it is open. To point the plugin at it yourself, set `SLOTVFX_APP` (the `SlotVFX.app` path on macOS, the folder holding `SlotVFX.exe` on Windows), for example in the `env` section of your Claude Code settings.
+SlotVFX in another folder is found while it is open. To point the plugin at it yourself, set the plugin's **SlotVFX app location** option in `/config` (the `SlotVFX.app` path on macOS, the folder holding `SlotVFX.exe` on Windows).
 
 The plugin looks for the app in `/Applications` and `~/Applications` on macOS, and in the default install folders on Windows. If you installed SlotVFX somewhere else, move it to one of those standard locations, or add the app's server to Claude Code yourself with `claude mcp add` (on macOS it is `SlotVFX.app/Contents/Resources/mcp/adapter/server/slotfxMcpServer.mjs`, run with `node`).
 

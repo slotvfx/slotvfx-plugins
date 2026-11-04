@@ -9,15 +9,25 @@ const path = require('path');
 const childProcess = require('child_process');
 const readline = require('readline');
 
-const NOT_FOUND = 'SlotVFX Desktop was not found. If it is not installed, download it from https://slotvfx.com and move it to the Applications folder. If it is in another folder, open SlotVFX first or set SLOTVFX_APP to the SlotVFX.app path. Turn on Connect AI, then restart Claude Code.';
+const NOT_FOUND = 'SlotVFX Desktop was not found. If it is not installed, download it from https://slotvfx.com and move it to the Applications folder. If it is in another folder, open SlotVFX first, or set the SlotVFX app location option in /config in Claude Code to the SlotVFX.app path. Turn on Connect AI, then restart Claude Code.';
 const TOO_OLD = 'This SlotVFX Desktop is too old for AI. Update it to version 0.9.64 or newer from https://slotvfx.com, turn on Connect AI in SlotVFX, then restart Claude Code.';
 const NOT_MAC = 'This plugin is for macOS. On Windows, install slotvfx-windows@slotvfx instead, then restart Claude Code.';
 
-// SLOTVFX_APP (path to SlotVFX.app) wins; then the usual folders; then a
-// running SlotVFX, so copies kept in another folder are found while open.
+// The app location the user chose in the plugin's options (passed by .mcp.json
+// as --app) wins; then the usual folders; then a running SlotVFX, so copies
+// kept in another folder are found while open.
+const args = process.argv.slice(2);
+let chosenApp = '';
+const appFlag = args.indexOf('--app');
+if (appFlag !== -1) {
+  chosenApp = String(args[appFlag + 1] || '').trim();
+  args.splice(appFlag, 2);
+}
+if (chosenApp.startsWith('${')) chosenApp = ''; // option not set
+
 function appCandidates() {
   const apps = [];
-  if (process.env.SLOTVFX_APP) apps.push(process.env.SLOTVFX_APP);
+  if (chosenApp) apps.push(chosenApp.replace(/\/+$/, ''));
   apps.push('/Applications/SlotVFX.app', path.join(os.homedir(), 'Applications', 'SlotVFX.app'));
   try {
     const ps = childProcess.execFileSync('/bin/ps', ['-axo', 'comm='], { encoding: 'utf8' });
@@ -38,10 +48,12 @@ function findServerCommand() {
     const server = path.join(res, 'mcp', 'adapter', 'server', 'slotfxMcpServer.mjs');
     if (!fs.existsSync(server)) return { help: TOO_OLD };
     const launcher = path.join(res, 'mcp', 'slotvfx-mcp');
-    if (isExecutable(launcher)) return { command: launcher, args: [], env: process.env };
+    if (isExecutable(launcher)) return { command: launcher, args: [] };
     const macos = path.join(app, 'Contents', 'MacOS');
     const exe = fs.readdirSync(macos).map(name => path.join(macos, name)).find(isExecutable);
-    if (exe) return { command: exe, args: [server], env: Object.assign({}, process.env, { ELECTRON_RUN_AS_NODE: '1' }) };
+    // Older builds run the app itself as Node.js: /usr/bin/env adds the one
+    // variable that needs, and the plugin never reads or copies the environment.
+    if (exe) return { command: '/usr/bin/env', args: ['ELECTRON_RUN_AS_NODE=1', exe, server] };
   }
   return { help: NOT_FOUND };
 }
@@ -56,7 +68,7 @@ function isExecutable(file) {
 }
 
 function startServer(found) {
-  const child = childProcess.spawn(found.command, found.args.concat(process.argv.slice(2)), { stdio: 'inherit', env: found.env });
+  const child = childProcess.spawn(found.command, found.args.concat(args), { stdio: 'inherit' });
   for (const sig of ['SIGINT', 'SIGTERM', 'SIGHUP']) process.on(sig, () => child.kill(sig));
   child.on('exit', (code, signal) => process.exit(signal ? 1 : code === null ? 0 : code));
   child.on('error', err => serveSetupHelp(`SlotVFX MCP could not start (${err.message}). Restart SlotVFX, turn on Connect AI, then restart Claude Code.`));

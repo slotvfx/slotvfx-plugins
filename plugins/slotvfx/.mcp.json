@@ -3,7 +3,11 @@
     "SlotVFX": {
       "type": "stdio",
       "command": "node",
-      "args": ["${CLAUDE_PLUGIN_ROOT}/scripts/start-slotvfx-mcp.js"]
+      "args": [
+        "${CLAUDE_PLUGIN_ROOT}/scripts/start-slotvfx-mcp.js",
+        "--app",
+        "${user_config.slotvfx_app}"
+      ]
     }
   }
 }
