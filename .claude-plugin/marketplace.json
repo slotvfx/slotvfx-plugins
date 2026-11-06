@@ -10,7 +10,7 @@
   "plugins": [
     {
       "name": "slotvfx",
-      "source": "./plugins/slotvfx",
+      "source": "./plugins/slotvfx-mac",
       "description": "Claude Code plugin for SlotVFX on macOS: 20 skills plus the SlotVFX Desktop MCP connection, so Claude can create, animate, test and export animation and VFX for 2D games (win moments, transitions, particles, Spine) right in the editor. Needs SlotVFX Desktop and Node.js (any version).",
       "category": "design",
       "tags": [

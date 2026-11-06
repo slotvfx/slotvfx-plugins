@@ -9,6 +9,16 @@ Let Claude build animation and VFX for your 2D game in **[SlotVFX](https://slotv
 
 No Git needed. **On Windows**, install `slotvfx-windows@slotvfx` instead of `slotvfx@slotvfx`. Already have Git? `/plugin marketplace add slotvfx/slotvfx-plugins` works too.
 
+**Two versions.** The plugin above (from this repository's own marketplace) is the full plugin: skills plus the SlotVFX connection. The SlotVFX listing in Anthropic's plugin directory is a skills-only copy, because the directory doesn't accept MCP servers that run on the user's computer; its skills explain how to add the connection. Install one of them, not both.
+
+| Folder | What it is |
+| :- | :- |
+| `plugins/slotvfx-mac` | Full macOS plugin (`slotvfx@slotvfx`), and the source of the skills |
+| `plugins/slotvfx-windows` | Full Windows plugin (`slotvfx-windows@slotvfx`) |
+| `plugins/slotvfx` | Skills-only copy for Anthropic's plugin directory |
+
+After changing the skills, run `scripts/sync-plugins.sh`, then `scripts/build-url-marketplace.sh`, and commit `dist/` too.
+
 **What you get**
 - **The SlotVFX MCP connection:** Claude works on the project open in SlotVFX Desktop (137 editor tools) through the app's local, token-protected AI bridge.
 - **20 skills:** particle recipes, win celebrations and hold loops, travel effects, slashes, per-cell effects, logo reveals, spin showcases, Spine VFX, motion craft (eases, springs, staggers), state machines and scenarios, performance, build verification and dev handoff reports.
@@ -46,4 +56,4 @@ The plugin looks for the app in `/Applications` and `~/Applications` on macOS, a
 If you already use the SlotVFX desktop extension in the Claude desktop app, you don't need it in Claude Code; avoid running both in the same client, or you'll see every tool twice.
 
 ## Licence
-The skills and plugin files are MIT (see LICENSE and plugins/slotvfx/NOTICE.md). SlotVFX Desktop itself, its MCP server and its licence are separate and are not included here.
+The skills and plugin files are MIT (see LICENSE and plugins/slotvfx-mac/NOTICE.md). SlotVFX Desktop itself, its MCP server and its licence are separate and are not included here.

@@ -1,7 +1,7 @@
 {
   "name": "slotvfx",
-  "version": "0.9.7",
-  "description": "Claude Code plugin for SlotVFX: 20 skills plus the SlotVFX Desktop MCP connection, so Claude can create, animate, test and export animation and VFX for 2D games (win moments, transitions, particles, Spine) right in the editor. Needs SlotVFX Desktop and Node.js (any version).",
+  "version": "0.9.8",
+  "description": "20 SlotVFX skills for Claude Code: create, animate, test and export animation and VFX for 2D games (win moments, transitions, particles, logo reveals, Spine) in SlotVFX Desktop. Skills only: it doesn't include the SlotVFX connection, and the skills walk you through adding it once.",
   "author": {
     "name": "Gamix Labs Private Limited",
     "url": "https://slotvfx.com"
@@ -13,7 +13,6 @@
     "claude-code",
     "claude-plugin",
     "claude-skills",
-    "mcp",
     "slotvfx",
     "slot-games",
     "game-vfx",
@@ -23,13 +22,5 @@
     "spine",
     "igaming",
     "gamedev"
-  ],
-  "userConfig": {
-    "slotvfx_app": {
-      "type": "directory",
-      "title": "SlotVFX app location (optional)",
-      "description": "Only needed if SlotVFX.app is not in Applications or ~/Applications and you don't keep it open. Leave empty to find it automatically.",
-      "default": ""
-    }
-  }
+  ]
 }

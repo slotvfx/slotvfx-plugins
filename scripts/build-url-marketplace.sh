@@ -1,15 +1,18 @@
 #!/bin/sh
 # Builds dist/: a zip of each plugin and a marketplace.json that points at them,
 # so Claude Code can install the plugins over HTTPS without Git.
-# Run scripts/sync-windows-plugin.sh first, then this, and commit dist/ with the change.
+# Run scripts/sync-plugins.sh first, then this, and commit dist/ with the change.
+# The plugin named slotvfx here is the full macOS plugin in plugins/slotvfx-mac;
+# plugins/slotvfx is the skills-only copy for Anthropic's directory and isn't built.
 set -eu
 root=$(CDPATH= cd -- "$(dirname -- "$0")/.." && pwd)
 base="https://raw.githubusercontent.com/slotvfx/slotvfx-plugins/main/dist"
 mkdir -p "$root/dist"
 rm -f "$root"/dist/*.zip
 entries=""
-for name in slotvfx slotvfx-windows; do
-  dir="$root/plugins/$name"
+for pair in slotvfx:slotvfx-mac slotvfx-windows:slotvfx-windows; do
+  name=${pair%%:*}
+  dir="$root/plugins/${pair#*:}"
   version=$(sed -n 's/^ *"version": *"\([^"]*\)".*/\1/p' "$dir/.claude-plugin/plugin.json" | head -n 1)
   description=$(sed -n 's/^ *"description": *"\([^"]*\)".*/\1/p' "$dir/.claude-plugin/plugin.json" | head -n 1)
   zipname="$name-plugin-$version.zip"
@@ -28,7 +31,7 @@ cat > "$root/dist/marketplace.json" <<JSON
     "url": "https://slotvfx.com"
   },
   "metadata": {
-    "description": "SlotVFX plugins for Claude Code, installed without Git: create, animate, test and export slot game VFX in SlotVFX Desktop."
+    "description": "SlotVFX plugins for Claude Code, installed without Git: create, animate, test and export animation and VFX for 2D games in SlotVFX Desktop."
   },
   "plugins": [
 $entries
