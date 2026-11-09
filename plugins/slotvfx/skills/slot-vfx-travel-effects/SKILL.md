@@ -18,7 +18,7 @@ For a single projectile or pulse, put A-to-B motion on one head and let companio
 | Launch puff or muzzle flash | Follower emitted on birth |
 | Trail | TRAIL sub-emitter on the head or an appropriate rider, not a separate layer |
 
-Avoid redundant paths or targets on followers that should share one route; each is a second source of truth and drifts when the head is re-aimed. Set lifespan variance explicitly for timing-critical heads and verify actual speed, bend and arrival. To key the head's ease exactly, see [motion craft](../slot-vfx-motion-craft/SKILL.md). For multiple heads, document which impact belongs to which driver.
+From 0.9.78 a path can also move by itself (Path Motion: the `pathMotion` option of `create_path_from_preset` or the `path.pathMotion` feature), with matching support in game runtime exports; read its schema before relying on it for a route. Avoid redundant paths or targets on followers that should share one route; each is a second source of truth and drifts when the head is re-aimed. Set lifespan variance explicitly for timing-critical heads and verify actual speed, bend and arrival. To key the head's ease exactly, see [motion craft](../slot-vfx-motion-craft/SKILL.md). For multiple heads, document which impact belongs to which driver.
 
 The supplied pack reports one sub-emitter per layer and that a follower could not itself be a driver, so a trail that needed its own followers had to be flattened onto the moving layer; inspect current support before planning a hierarchy. It also reports:
 

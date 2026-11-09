@@ -11,7 +11,7 @@ The build skills say what to make. This one says how it moves, and how to write 
 
 Lines marked **(tested)** were measured in SlotVFX 0.9.59 through the MCP. Everything else is a starting point taken from motion-design practice (HyperFrames, GSAP, Remotion and the 12 principles); keep it only if it looks right on the real art at player scale. Where an approved number already exists in another SlotVFX skill, that number wins.
 
-**Standard moves first (0.9.79).** For a float, shake, bounce, pulse, wiggle, pendulum, sway, coin spin or another of the editor's Add motion presets on image layers, `slotfx_apply_motion_preset` writes the same eased keys the editor does, with whole cycles for loops, seeded randomness and a stagger across layers; `slotfx_list_motion_presets` lists each preset's settings. Dry-run it, then read the keys back. Use this skill's script for what the presets don't cover: custom eases, springs, log-space scale, beats and Spine keys.
+**Standard moves first (from 0.9.78).** For a float, shake, bounce, pulse, wiggle, pendulum, sway, coin spin or another of the editor's Add motion presets on image layers, `slotfx_apply_motion_preset` writes the same eased keys the editor does, with whole cycles for loops, seeded randomness and a stagger across layers; `slotfx_list_motion_presets` lists each preset's settings. Dry-run it, then read the keys back. Use this skill's script for what the presets don't cover: custom eases, springs, log-space scale, beats and Spine keys.
 
 ## 1. How SlotVFX evaluates a key
 
