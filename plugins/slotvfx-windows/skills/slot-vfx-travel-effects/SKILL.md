@@ -43,6 +43,6 @@ Do not move a head container to A as well as setting local travel points unless 
 
 ## Verify several routes
 
-Render early flight, mid-flight and impact, checking the companions are with the head at each, then aim to a second destination. Anything left behind has its own path or target and should become a follower. In the runtime, include left/right travel and a late-started instance away from the template origin. Add transformed-parent tests if the game uses them.
+In the editor, `get_timeline` with `motion: { targetIds, timesSeconds }` samples the head's evaluated position, direction and speed, which checks bend, speed and arrival time before the runtime test. `move_effect` shifts the head's A-to-B target and handles with it, so moving the whole effect keeps the route. Render early flight, mid-flight and impact, checking the companions are with the head at each, then aim to a second destination. Anything left behind has its own path or target and should become a follower. In the runtime, include left/right travel and a late-started instance away from the template origin. Add transformed-parent tests if the game uses them.
 
 Measure the arrival against B in a common coordinate space. Error within deliberate spawn spread (a few px in the pack's tests) may be correct; a large systematic offset (tens or hundreds of px) suggests an origin, instance-ID or follower-space problem. Check the full trail and impact remain attached, the flight duration is correct, and stopping/reusing the instance leaves no old particles behind.
