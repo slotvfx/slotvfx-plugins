@@ -1,6 +1,6 @@
 # Third-party references and optional tools
 
-The MIT License covers the original SlotVFX skill text, workflow guidance and included helper scripts. It does not relicense third-party pages, images, GIFs, game assets, software or trademarks linked from the skills. Those works remain with their respective owners.
+The MIT License covers the original SlotVFX skill text, workflow guidance and helper scripts. The full plugins include the scripts; the skills-only version in Anthropic's plugin directory leaves them out. It does not relicense third-party pages, images, GIFs, game assets, software or trademarks linked from the skills. Those works remain with their respective owners.
 
 - The slash reference study links to Roman Rait's public Hero Wars gallery and GIFs, Cyanilux's shader breakdown, and discussions by their authors on Real Time VFX. No reference image or GIF is included here. The study retains its source links and distinguishes observations from interpretation.
 - The Fairy Spins worked example is a fictional workflow description. Its original project files, art, generated keys and footage are not included.

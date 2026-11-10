@@ -13,7 +13,7 @@ Use the user's reference and requested style. Do not silently replace a slash wi
 
 Identify the attack family: **sweeping crescent**, **straight cut**, **projectile/fan**, or **lingering magical arc**. Record its plane, direction, pivot, head shape, widest region, tail shape, peak and disappearance. Distinguish multiple strikes from multiple layers of one strike.
 
-For animation references, inspect the actual motion and representative frames. Separate source facts, measured encoded timing and interpretation. A still image cannot establish speed. For the Hero Wars examples and timing method, read [the reference study](references/reference-study.md). Use `scripts/analyze_gif.py` when a locally available GIF needs frame/timing inspection; its brightness thresholds are an analysis aid, not a visibility or quality verdict.
+For animation references, inspect the actual motion and representative frames. Separate source facts, measured encoded timing and interpretation. A still image cannot establish speed. For the Hero Wars examples and timing method, read [the reference study](references/reference-study.md). Use `scripts/analyze_gif.py` when a locally available GIF needs frame/timing inspection; its brightness thresholds are an analysis aid, not a visibility or quality verdict. The skills-only plugin doesn't include it; read the GIF's frame durations and look at representative frames directly instead.
 
 ## Choose a construction that fits
 

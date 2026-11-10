@@ -35,6 +35,8 @@ For silent previews, set audio off. When audio is part of the request, preserve 
 
 Requirements: Python 3, `ffmpeg`, and `ffprobe` on PATH, or explicit tool paths. It makes no SlotVFX calls.
 
+The skills-only version of this plugin in Anthropic's plugin directory doesn't include the `scripts/` folder. Without it, make the same checks directly: read each clip's frame count, fps, size and codec with `ffprobe`, combine compatible silent clips with ffmpeg's concat demuxer and `-c copy`, then count the combined file's decoded frames and compare with the sum.
+
 Create an ordered manifest, preferably in the task's `work/` directory:
 
 ```json

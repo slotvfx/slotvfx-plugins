@@ -28,4 +28,4 @@ Core rules:
 - **Uneven timing**: fast commit, slower recovery; holds keep moving slightly.
 - Keep neighbouring rotate keys within 180° unless a full spin is the point.
 
-`scripts/motion_keys.py wave` writes looping breath and sway layers (each channel with its own amount, delay and period, wrapped exactly at the seam); `scripts/motion_keys.py chain` writes overlap down loose chains only (tails, hair, capes), never a spine or an acting arm. Pass `--base` with the idle's first-pose values.
+`scripts/motion_keys.py wave` writes looping breath and sway layers (each channel with its own amount, delay and period, wrapped exactly at the seam); `scripts/motion_keys.py chain` writes overlap down loose chains only (tails, hair, capes), never a spine or an acting arm. Pass `--base` with the idle's first-pose values. Without the script (the skills-only plugin), key the same layers by hand: each channel is the base value plus its amount times the wave shape, delayed by its own offset and wrapped so the last key equals the first.

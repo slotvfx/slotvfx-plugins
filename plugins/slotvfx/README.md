@@ -8,7 +8,7 @@ Website: [slotvfx.com](https://slotvfx.com) · Docs: [slotvfx.com/docs](https://
 
 ## What you get
 - **20 skills:** particle recipes, win celebrations and hold loops, travel effects, slashes, per-cell effects, logo reveals, spin showcases, Spine VFX, motion craft (eases, springs, staggers), state machines and scenarios, performance, build verification and dev handoff reports.
-- **Skills are text:** Markdown guides plus small standard-library Python helpers (for example `motion_keys.py`) that Claude may run locally when a skill says so. The plugin starts no programs and connects to nothing by itself.
+- **Skills are text only:** Markdown guides. A few skills mention small Python helpers (for example `motion_keys.py`); those come with the full plugin on GitHub and are left out here, and the skills say how to do the same steps without them. The plugin starts no programs and connects to nothing by itself.
 
 ## Connect SlotVFX
 You need SlotVFX Desktop 0.9.64 or newer, open, with **Connect AI** turned on. Then add the SlotVFX connection to Claude Code once. Claude offers to do this for you the first time it can't find the SlotVFX tools; the one-line commands for macOS and Windows are in [Connect SlotVFX](skills/slotvfx-mcp-authoring/references/connect-slotvfx.md).

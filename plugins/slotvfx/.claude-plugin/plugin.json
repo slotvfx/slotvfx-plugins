@@ -1,6 +1,6 @@
 {
   "name": "slotvfx",
-  "version": "0.9.9",
+  "version": "0.9.10",
   "description": "20 SlotVFX skills for Claude Code: create, animate, test and export animation and VFX for 2D games (win moments, transitions, particles, logo reveals, Spine) in SlotVFX Desktop. Skills only: it doesn't include the SlotVFX connection, and the skills walk you through adding it once.",
   "author": {
     "name": "Gamix Labs Private Limited",

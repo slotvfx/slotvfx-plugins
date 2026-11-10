@@ -4,17 +4,7 @@ Original authoring tests used SlotVFX **0.9.49** on 2026-09-26. The installed **
 
 ## Connection and inventory
 
-Use the available SlotVFX MCP tools. If none are available, follow [Connect SlotVFX](../../slotvfx-mcp-authoring/references/connect-slotvfx.md) rather than improvising a connection. For a scripted batch outside the chat, the MCP adapter shipped with the installed app can also be called directly. In this session, the bundled adapter exposed `createAutoDiscoveringSlotfxBridgeClient` and `callSlotfxTool`; an older source checkout exposed a stale interface. Use the local MCP adapter provided with a compatible SlotVFX Desktop build and the tools connected through your client. Do not copy another installation’s server, hardcode a former workspace path or print bridge credentials.
-
-After resolving the current adapter module, its tested call pattern was:
-
-```javascript
-// The adapter finds the running app's local bridge on its own.
-const client = createAutoDiscoveringSlotfxBridgeClient({ argv: [] });
-const result = await callSlotfxTool(client, toolName, args);
-const data = result.structuredContent || result;
-if (result.isError || data.ok === false) throw new Error(data.message || toolName);
-```
+Use the available SlotVFX MCP tools. If none are available, follow [Connect SlotVFX](../../slotvfx-mcp-authoring/references/connect-slotvfx.md) rather than improvising a connection. Don't call the app's local bridge directly or read its connection details; work through the connected tools. Do not copy another installation's server or hardcode a former workspace path.
 
 Keep base64 payloads out of logs. For batches, save compact progress and artifact IDs so a restart does not duplicate successful work.
 
