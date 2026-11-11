@@ -13,6 +13,10 @@ Lines marked **(tested)** were measured in SlotVFX 0.9.59 through the MCP. Every
 
 **Standard moves first (from 0.9.78).** For a float, shake, bounce, pulse, wiggle, pendulum, sway, coin spin or another of the editor's Add motion presets on image layers, `slotfx_apply_motion_preset` writes the same eased keys the editor does, with whole cycles for loops, seeded randomness and a stagger across layers; `slotfx_list_motion_presets` lists each preset's settings. Dry-run it, then read the keys back. Use this skill's script for what the presets don't cover: custom eases, springs, log-space scale, beats and Spine keys.
 
+## Clip speed and sequence timing
+
+For whole-clip speed changes use `slotfx_set_clip_slow_motion` and read `slotfx://authoring-guide/slow-motion`. Speed keys drive all layers on one clock; retain ordinary property keys for the motion's shape. Inspect `clipDuration` versus `playedDuration`, clip frame rate and `slowDownSound`. Pitch follows rate when sound follows the clip; normal-rate sound is an explicit option. Sequence bar speed is a separate constant multiplier. Read [Timeline Director and Speed keys](../motion-sequence/references/timeline-director.md) for arrangements and recording; re-read bar endpoints after changing source Speed keys.
+
 ## 1. How SlotVFX evaluates a key
 
 **A key pair with `free` tangents is a CSS / After Effects cubic-bezier (tested).** Sampled positions matched `cubic-bezier(0.25, 1, 0.5, 1)` and `back.out` to 0.01 px. So for a segment from key A (time t0, value v0) to key B (t1, v1) and a named ease `(x1, y1, x2, y2)`:
@@ -128,6 +132,10 @@ The script also takes `--origin edges`, `start`, `end`, `random`, `reels` (colum
 3. **Anticipation** runs at about 20–30% of the action it precedes. Size it to the payoff: a bigger wind-up for a bigger hit, and the anticipation's size roughly matches the settle's.
 4. **Win tiers (BIG → MEGA → EPIC)** escalate by adding beats on one shared tempo, not by making one beat louder. Each tier lands on the same pulse with a different axis: scale slam, side snap, rise. The top tier gets the longest wind-up and a hold that runs longer than expected before it lands.
 5. **Impact punctuation** (starting point): hold the moving element still for 2–5 frames at 60 fps at contact, as two equal-value keys, then release. It sells weight.
+   - For a keyed hold that fits the requested motion, about 0.03 s for a tap up to 0.2 s for the heaviest hit are starting points. Keep the main contact flash and initial impact particles on the contact beat. Particles keep simulating through a keyed transform hold; delay secondary debris or follow-through until the release only when the intended motion calls for it.
+   - When shake fits the requested effect, try a decaying offset of about 1% of the view height for about 0.2 s on a target group within scope. Scale the hold and shake to the intended blow; anticipation can run opposite the blow.
+   - When target animation is within scope, try a 1–2 frame white flash (Lighten keys), a small push away from the blow that springs back, or a temporary tint that clears, as appropriate to the style. For FX-only work, align to the existing target performance and describe proposed host reactions without editing those targets.
+   - These are clip keys. Game-side hit-stop still needs a declared clock owner (see *Coordinate the impact*).
 6. **Count-ups:** the number ticks in the game. SlotVFX supplies the banner's growth over the same duration and ease, so give the dev the ease name and its bezier. A multiplier or suffix lands after the count, on its own beat.
 
 ## 7. Loops that don't look like loops
@@ -140,6 +148,10 @@ For keyed layers, give each layer a different whole number of cycles per clip, s
 
 - **Velocity-matched cut:** exit with an `.in` ease and enter with the `.out` of the same family. Both pass through the cut at the same speed when distance divided by duration is equal on each side. For `power2` the speed at the cut is about 3× the average speed.
 - **A transition** that overlaps two scenes shortens the total by the overlap. **An overlay** (light leak, flash) sits centred on the cut and adds no time.
+
+## Coordinate the impact
+
+For a character/symbol interaction, identify its preparation, release/contact and recovery cues. Align FX origin, main accent, requested reaction and sound to that performance; read [visual critique and coordinated effects](../create-vfx/references/visual-critique.md) when they feel disconnected. Keep source versus played time explicit when Speed keys, trims or sequence bar speed are involved. Game-side hit-stop needs a declared host/clock owner when requested; do not infer a global-pause tool or alter approved actor motion for an FX-only revision. Recording-only marker ties and Blends retain their Editor only limits.
 
 ## 9. Judge it as motion
 
