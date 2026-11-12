@@ -13,6 +13,11 @@ set -eu
 root=$(CDPATH= cd -- "$(dirname -- "$0")/.." && pwd)
 src="$root/plugins/slotvfx-mac"
 version=$(sed -n 's/^ *"version": *"\([^"]*\)".*/\1/p' "$src/.claude-plugin/plugin.json" | head -n 1)
+# Stamp the plugin version into the skills' "SlotVFX skills version:" line, so
+# assistants can compare it with slotfx_get_bridge_status.skills.latestVersion.
+for f in "$src"/skills/*/SKILL.md; do
+  sed -i.bak "s/^SlotVFX skills version: [0-9][0-9.]*\./SlotVFX skills version: $version./" "$f" && rm "$f.bak"
+done
 for name in slotvfx-windows slotvfx; do
   dst="$root/plugins/$name"
   rm -rf "$dst/skills" "$dst/assets"
