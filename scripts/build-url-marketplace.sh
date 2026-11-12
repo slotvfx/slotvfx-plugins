@@ -18,7 +18,8 @@ for pair in slotvfx:slotvfx-mac slotvfx-windows:slotvfx-windows; do
   zipname="$name-plugin-$version.zip"
   (cd "$dir" && zip -qrX "$root/dist/$zipname" . -x '*.DS_Store')
   sha=$(shasum -a 256 "$root/dist/$zipname" | cut -d ' ' -f 1)
-  entry=$(printf '    {\n      "name": "%s",\n      "source": {\n        "source": "archive",\n        "url": "%s/%s",\n        "sha256": "%s"\n      },\n      "description": "%s",\n      "category": "design"\n    }' "$name" "$base" "$zipname" "$sha" "$description")
+  # "version" lets the SlotVFX MCP server tell users when newer skills are out.
+  entry=$(printf '    {\n      "name": "%s",\n      "version": "%s",\n      "source": {\n        "source": "archive",\n        "url": "%s/%s",\n        "sha256": "%s"\n      },\n      "description": "%s",\n      "category": "design"\n    }' "$name" "$version" "$base" "$zipname" "$sha" "$description")
   entries="${entries:+$entries,
 }$entry"
   echo "Built dist/$zipname ($sha)"
