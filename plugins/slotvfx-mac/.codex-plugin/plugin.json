@@ -1,0 +1,19 @@
+{
+  "name": "slotvfx",
+  "version": "0.9.19",
+  "description": "Author SlotVFX effects using the desktop MCP and the SlotVFX skill pack.",
+  "homepage": "https://slotvfx.com",
+  "repository": "https://github.com/slotvfx/slotvfx-plugins",
+  "license": "MIT",
+  "skills": "./skills/",
+  "mcpServers": {
+    "SlotVFX": {
+      "type": "stdio",
+      "command": "node",
+      "args": [
+        "scripts/start-slotvfx-mcp.js"
+      ],
+      "cwd": "."
+    }
+  }
+}

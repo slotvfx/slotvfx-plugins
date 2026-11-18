@@ -18,6 +18,11 @@ version=$(sed -n 's/^ *"version": *"\([^"]*\)".*/\1/p' "$src/.claude-plugin/plug
 for f in "$src"/skills/*/SKILL.md; do
   sed -i.bak "s/^SlotVFX skills version: [0-9][0-9.]*\./SlotVFX skills version: $version./" "$f" && rm "$f.bak"
 done
+# Keep Codex's launcher manifests on the same release as Claude's.
+for name in slotvfx-mac slotvfx-windows; do
+  manifest="$root/plugins/$name/.codex-plugin/plugin.json"
+  sed -i.bak "s/\"version\": *\"[^\"]*\"/\"version\": \"$version\"/" "$manifest" && rm "$manifest.bak"
+done
 for name in slotvfx-windows slotvfx; do
   dst="$root/plugins/$name"
   rm -rf "$dst/skills" "$dst/assets"
